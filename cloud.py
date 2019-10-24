@@ -2,9 +2,20 @@
 
 from leancloud import Engine
 from leancloud import LeanEngineError
+import requests
+import re
+import json #引用json模块
 
 engine = Engine()
 
+@engine.define
+def test():
+	regex = r"{\"BONDCODE.*?}"
+	html=requests.get('http://data.eastmoney.com/xg/kzz/default.html')
+	matches = re.finditer(regex, html.text)
+
+	for matchNum, match in enumerate(matches, start=1):
+		return match.group()
 
 @engine.define
 def hello(**params):
