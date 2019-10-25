@@ -14,7 +14,7 @@ def test():
 	html=requests.get('http://data.eastmoney.com/xg/kzz/default.html')
 	matches = re.finditer(regex, html.text)
 	for matchNum, match in enumerate(matches, start=1):
-    	print(match.group())
+    		print(match.group())
 
 @engine.define
 def hello(**params):
